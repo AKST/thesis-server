@@ -11,5 +11,5 @@ gradle -Ddb.url="your database url" \
        -Ddb.username="the username you're using for the db" \
        -Ddb.username="the password you're using for the db" \
        -Dserver.root="the root path of this server, it defaults to '/'" \
-       -Dserver.root="the root that this server will run on, defaults to 80" \
+       -Dserver.root="the root that this server will run on, defaults to 80"
 ```
