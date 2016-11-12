@@ -10,10 +10,9 @@ import javax.persistence.GeneratedValue
 @Entity
 @Table(name="package")
 class Package implements Serializable {
-  @Id @GeneratedValue
-  @Column(name="name")
+  @Id @GeneratedValue @Column(name="id")
   int id
 
-  @Column(name="string")
+  @Column(name="name")
   String name
 }

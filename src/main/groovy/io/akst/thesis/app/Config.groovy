@@ -2,6 +2,9 @@ package io.akst.thesis.app;
 
 import javax.persistence.Persistence
 import javax.persistence.EntityManagerFactory as SessionFactory
+import org.hibernate.boot.MetadataSources
+
+import io.akst.thesis.models.util.SemverType
 
 
 @groovy.transform.TypeChecked
@@ -39,6 +42,10 @@ class Config {
     }
 
     private SessionFactory getSessionFactory() {
+      def sources = new MetadataSources()
+      sources
+        .getMetadataBuilder()
+        .applyBasicType(new SemverType(), SemverType.KEYS)
       Persistence.createEntityManagerFactory("thesis/read")
     }
 

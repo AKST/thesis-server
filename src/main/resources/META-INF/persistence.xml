@@ -2,6 +2,7 @@
 <persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
   <persistence-unit name="thesis/read">
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>io.akst.thesis.models.Result</class>
     <class>io.akst.thesis.models.Package</class>
     <properties>
       <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
