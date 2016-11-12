@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence xmlns="http://xmlns.jcp.org/xml/ns/persistence" version="2.1">
+  <persistence-unit name="thesis/read">
+    <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
+    <class>io.akst.thesis.models.Package</class>
+    <properties>
+      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
+      <property name="hibernate.connection.driver_class" value="org.postgresql.Driver"/>
+      <property name="hibernate.connection.username" value="${db.username}"/>
+      <property name="hibernate.connection.password" value="${db.password}"/>
+      <property name="hibernate.connection.url" value="${db.url}"/>
+      <!--property name="hibernate.current_session_context_class" value="thread"/-->
+      <!--property name="hbm2ddl.auto" value="create"/-->
+      <!--property name="show_sql" value="true"/-->
+    </properties>
+  </persistence-unit>
+</persistence>
