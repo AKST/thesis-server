@@ -7,7 +7,8 @@ because I'm applying for a job that requires experince in the too.
 ## Startup
 
 ```bash
-gradle -Ddb.url="your database url" \
+gradle run \
+       -Ddb.url="your database url" \
        -Ddb.username="the username you're using for the db" \
        -Ddb.password="the password you're using for the db" \
        -Dserver.root="the root path of this server, it defaults to '/'" \
