@@ -5,6 +5,7 @@ import org.mortbay.jetty.servlet.ServletHolder
 import org.mortbay.jetty.servlet.Context
 
 import io.akst.thesis.servlet.IndexServlet
+import io.akst.thesis.servlet.AverageServlet
 
 class Main {
   static void main(String ... args) {
@@ -19,10 +20,15 @@ class Main {
     new Server(config.port)
   }
 
-  static Context getContext(Config config, Server server) {
+  /**
+   * Initialises Routes with from a configuration object
+   */
+  static Context getContext(config, server) {
     def context = new Context(server, config.root, Context.SESSIONS)
     def index = new IndexServlet()
+    def averages = new AverageServlet(factory: config.sessions)
     context.addServlet(new ServletHolder(index), "/")
+    context.addServlet(new ServletHolder(averages), "/averages")
     context
   }
 }

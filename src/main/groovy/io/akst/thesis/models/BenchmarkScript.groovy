@@ -4,6 +4,10 @@ import javax.persistence.Id
 import javax.persistence.Table
 import javax.persistence.Entity
 import javax.persistence.Column
+import javax.persistence.OneToMany
+import javax.persistence.FetchType
+import javax.persistence.JoinTable
+import javax.persistence.JoinColumn
 import javax.persistence.GeneratedValue
 
 @Entity
@@ -14,5 +18,11 @@ class BenchmarkScript implements Serializable {
 
   @Column(name="repr")
   String repr
+
+  @OneToMany(fetch=FetchType.LAZY)
+  @JoinTable(name="SCRIPT_BATCHES",
+    joinColumns=@JoinColumn(name="id"),
+    inverseJoinColumns=@JoinColumn(name="checksum"))
+  def Collection<Batch> batches
 }
 

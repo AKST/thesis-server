@@ -7,6 +7,11 @@ import javax.persistence.Id
 import javax.persistence.Table
 import javax.persistence.Entity
 import javax.persistence.Column
+import javax.persistence.OneToMany
+import javax.persistence.ManyToOne
+import javax.persistence.FetchType
+import javax.persistence.JoinTable
+import javax.persistence.JoinColumn
 import javax.persistence.GeneratedValue
 
 import org.hibernate.annotations.Type
@@ -18,15 +23,27 @@ import io.akst.thesis.models.util.Semver
 @Table(name="result")
 class Result implements Serializable {
   @Id @GeneratedValue @Column(name="id")
-  int id
+  def int id
 
   @Column(name="batch")
-  UUID name
+  def UUID batchId
 
   @Column(name="version")
   @Type(type="io.akst.thesis.models.util.SemverType")
-  Semver version
+  def Semver version
 
   @Column(name="seconds")
-  BigDecimal seconds
+  def BigDecimal seconds
+
+  @ManyToOne(fetch=FetchType.LAZY)
+  @JoinTable(name="RESULT_PACKAGE",
+    joinColumns=@JoinColumn(name="batch"),
+    inverseJoinColumns=@JoinColumn(name="id"))
+  def Batch batch
+
+  @OneToMany(fetch=FetchType.LAZY)
+  @JoinTable(name="RESULT_OUTPUTS",
+    joinColumns=@JoinColumn(name="id"),
+    inverseJoinColumns=@JoinColumn(name="result"))
+  def Collection<FileOutput> outputs
 }
