@@ -4,6 +4,7 @@
     <provider>org.hibernate.jpa.HibernatePersistenceProvider</provider>
     <class>io.akst.thesis.models.Batch</class>
     <class>io.akst.thesis.models.Result</class>
+    <class>io.akst.thesis.models.Average</class>
     <class>io.akst.thesis.models.Package</class>
     <class>io.akst.thesis.models.FileOutput</class>
     <class>io.akst.thesis.models.BenchmarkScript</class>

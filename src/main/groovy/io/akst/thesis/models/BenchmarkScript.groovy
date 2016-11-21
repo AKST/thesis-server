@@ -19,10 +19,10 @@ class BenchmarkScript implements Serializable {
   @Column(name="repr")
   String repr
 
-  @OneToMany(fetch=FetchType.LAZY)
-  @JoinTable(name="SCRIPT_BATCHES",
-    joinColumns=@JoinColumn(name="id"),
-    inverseJoinColumns=@JoinColumn(name="checksum"))
-  def Collection<Batch> batches
+  //@OneToMany(fetch=FetchType.LAZY)
+  //@JoinTable(name="batch",
+  //  joinColumns=@JoinColumn(name="id"),
+  //  inverseJoinColumns=@JoinColumn(name="checksum"))
+  //def Collection<Batch> batches
 }
 

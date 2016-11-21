@@ -35,15 +35,15 @@ class Result implements Serializable {
   @Column(name="seconds")
   def BigDecimal seconds
 
-  @ManyToOne(fetch=FetchType.LAZY)
-  @JoinTable(name="RESULT_PACKAGE",
-    joinColumns=@JoinColumn(name="batch"),
-    inverseJoinColumns=@JoinColumn(name="id"))
-  def Batch batch
+  //@ManyToOne(fetch=FetchType.LAZY)
+  //@JoinTable(name="batch",
+  //  joinColumns=@JoinColumn(name="batch"),
+  //  inverseJoinColumns=@JoinColumn(name="id"))
+  //def Batch batch
 
-  @OneToMany(fetch=FetchType.LAZY)
-  @JoinTable(name="RESULT_OUTPUTS",
-    joinColumns=@JoinColumn(name="id"),
-    inverseJoinColumns=@JoinColumn(name="result"))
-  def Collection<FileOutput> outputs
+  //@OneToMany(fetch=FetchType.LAZY)
+  //@JoinTable(name="file_output",
+  //  joinColumns=@JoinColumn(name="id"),
+  //  inverseJoinColumns=@JoinColumn(name="result"))
+  //def Collection<FileOutput> outputs
 }

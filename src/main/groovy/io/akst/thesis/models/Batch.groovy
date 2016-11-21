@@ -29,22 +29,22 @@ class Batch implements Serializable {
   @Column(name="checksum")
   def byte[] checksum
 
-  @ManyToOne(fetch=FetchType.LAZY)
-  @JoinTable(name="BATCH_SCRIPT",
-    joinColumns=@JoinColumn(name="checksum"),
-    inverseJoinColumns=@JoinColumn(name="id"))
-  def BenchmarkScript script
+  //@ManyToOne(fetch=FetchType.LAZY)
+  //@JoinTable(name="benchmark_script",
+  //  joinColumns=@JoinColumn(name="checksum"),
+  //  inverseJoinColumns=@JoinColumn(name="id"))
+  //def BenchmarkScript script
 
-  @ManyToOne(fetch=FetchType.LAZY)
-  @JoinTable(name="BATCH_PACKAGE",
-    joinColumns=@JoinColumn(name="package"),
-    inverseJoinColumns=@JoinColumn(name="id"))
-  def Package parentPackage
+  //@ManyToOne(fetch=FetchType.LAZY)
+  //@JoinTable(name="package",
+  //  joinColumns=@JoinColumn(name="package"),
+  //  inverseJoinColumns=@JoinColumn(name="id"))
+  //def Package parentPackage
 
-  @OneToMany(fetch=FetchType.LAZY)
-  @JoinTable(name="BATCH_RESULTS",
-    joinColumns=@JoinColumn(name="id"),
-    inverseJoinColumns=@JoinColumn(name="batch"))
-  def Collection<Batch> batches
+  //@OneToMany(fetch=FetchType.LAZY)
+  //@JoinTable(name="result",
+  //  joinColumns=@JoinColumn(name="id"),
+  //  inverseJoinColumns=@JoinColumn(name="batch"))
+  //def Collection<Result> batches
 }
 
