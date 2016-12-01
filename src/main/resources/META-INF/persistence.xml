@@ -14,6 +14,7 @@
       <property name="hibernate.connection.username" value="${db.username}"/>
       <property name="hibernate.connection.password" value="${db.password}"/>
       <property name="hibernate.connection.url" value="${db.url}"/>
+      <property name="hibernate.show_sql" value="${db.logging}" />
       <!--property name="hibernate.current_session_context_class" value="thread"/-->
       <!--property name="hbm2ddl.auto" value="create"/-->
       <!--property name="show_sql" value="true"/-->

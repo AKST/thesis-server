@@ -74,7 +74,7 @@ class SemverType implements UserType {
   }
 
   def private static decode(repr) {
-    def lastIndex = repr.length - 2
+    def lastIndex = repr.length() - 1
     def split = repr.substring(1, lastIndex).split(',')
     def major = Integer.parseInt split[0], 10
     def minor = Integer.parseInt split[1], 10

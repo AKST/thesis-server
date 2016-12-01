@@ -16,6 +16,7 @@ import javax.persistence.GeneratedValue
 
 @Entity
 @Table(name="batch")
+@groovy.transform.TypeChecked
 class Batch implements Serializable {
   @Id @GeneratedValue @Column(name="id")
   def UUID id
@@ -27,24 +28,23 @@ class Batch implements Serializable {
   def Timestamp startTime
 
   @Column(name="checksum")
-  def byte[] checksum
+  def byte[] scriptChecksum
 
-  //@ManyToOne(fetch=FetchType.LAZY)
-  //@JoinTable(name="benchmark_script",
-  //  joinColumns=@JoinColumn(name="checksum"),
-  //  inverseJoinColumns=@JoinColumn(name="id"))
-  //def BenchmarkScript script
+  @Column(name="activity_timestamp")
+  def Timestamp last_modified
 
-  //@ManyToOne(fetch=FetchType.LAZY)
-  //@JoinTable(name="package",
-  //  joinColumns=@JoinColumn(name="package"),
-  //  inverseJoinColumns=@JoinColumn(name="id"))
-  //def Package parentPackage
+  // relations
 
-  //@OneToMany(fetch=FetchType.LAZY)
-  //@JoinTable(name="result",
-  //  joinColumns=@JoinColumn(name="id"),
-  //  inverseJoinColumns=@JoinColumn(name="batch"))
-  //def Collection<Result> batches
+  @ManyToOne(fetch=FetchType.LAZY, optional=true)
+  @JoinColumn(name="checksum", referencedColumnName="id", insertable=false, updatable=false)
+  def BenchmarkScript script
+
+  @ManyToOne(fetch=FetchType.LAZY, optional=true)
+  @JoinColumn(name="package", referencedColumnName="id", insertable=false, updatable=false)
+  def Package parentPackage
+
+  @OneToMany(fetch=FetchType.LAZY)
+  @JoinColumn(name="batch", referencedColumnName="id", insertable=false, updatable=false)
+  def Collection<Result> results
 }
 

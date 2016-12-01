@@ -15,6 +15,10 @@ class PackagesServlet extends HttpServlet {
   def void doGet(HttpServletRequest request, HttpServletResponse response) {
     response.setContentType("application/json")
     def builder = new StreamingJsonBuilder(response.getWriter())
-    builder(type: "package", data: this.packages.findAll(10))
+    builder(
+      type: "package",
+      data: this.packages.findAll(10)
+        .collect({ item ->  item.serialise() })
+    )
   }
 }

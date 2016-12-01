@@ -2,6 +2,7 @@ package io.akst.thesis.models
 
 import java.util.UUID
 import java.math.BigDecimal
+import java.sql.Timestamp
 
 import javax.persistence.Id
 import javax.persistence.Table
@@ -21,6 +22,7 @@ import io.akst.thesis.models.util.Semver
 
 @Entity
 @Table(name="result")
+@groovy.transform.TypeChecked
 class Result implements Serializable {
   @Id @GeneratedValue @Column(name="id")
   def int id
@@ -35,15 +37,14 @@ class Result implements Serializable {
   @Column(name="seconds")
   def BigDecimal seconds
 
-  //@ManyToOne(fetch=FetchType.LAZY)
-  //@JoinTable(name="batch",
-  //  joinColumns=@JoinColumn(name="batch"),
-  //  inverseJoinColumns=@JoinColumn(name="id"))
-  //def Batch batch
+  @Column(name="activity_timestamp")
+  def Timestamp last_modified
 
-  //@OneToMany(fetch=FetchType.LAZY)
-  //@JoinTable(name="file_output",
-  //  joinColumns=@JoinColumn(name="id"),
-  //  inverseJoinColumns=@JoinColumn(name="result"))
-  //def Collection<FileOutput> outputs
+  @ManyToOne(fetch=FetchType.LAZY, optional=true)
+  //@JoinColumn(name="batch", referencedColumnName="id", insertable=false, updatable=false)
+  def Batch batch
+
+  @OneToMany(fetch=FetchType.LAZY)
+  @JoinColumn(name="result", referencedColumnName="id", insertable=false, updatable=false)
+  def Collection<FileOutput> outputs
 }

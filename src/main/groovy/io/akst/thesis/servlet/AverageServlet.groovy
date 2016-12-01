@@ -15,10 +15,20 @@ class AverageServlet extends HttpServlet {
   def void doGet(HttpServletRequest request, HttpServletResponse response) {
     response.setContentType("application/json")
     def builder = new StreamingJsonBuilder(response.getWriter())
-    def results = this.averages.findAll()
-    builder(
-      type: "average",
-      data: results.collect({ item -> item.serialise() })
-    )
+    def type    = this.getResultType(request)
+    def results = this.getResults(type).collect({ item -> item.serialise() })
+    builder(type: "average/${type}", data: results)
+  }
+
+  def getResultType(HttpServletRequest request) {
+    return request.getParameter("type") ?: "sizes"
+  }
+
+  def getResults(String type) {
+    switch (type) {
+      case "sizes": return this.averages.findAll()
+      case "times": return this.averages.findAllTimes()
+      default: throw new Exception()
+    }
   }
 }
