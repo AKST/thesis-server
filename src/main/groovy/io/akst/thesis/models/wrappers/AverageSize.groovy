@@ -10,26 +10,30 @@ import io.akst.thesis.models.util.Semver
 import io.akst.thesis.models.util.ProjectionWrapper
 
 @groovy.transform.TypeChecked
-class AverageTime implements Serializable, ProjectionWrapper {
+class AverageSize implements Serializable, ProjectionWrapper {
   def int packageId
 
   def Semver version
 
-  def double averageTime
+  def BigDecimal averageSize
 
-  def AverageTime(int id, Semver version, double average) {
+  def String fileExtention
+
+  def AverageSize(int id, Semver version, String fileExtention, BigDecimal average) {
     this.packageId = id
     this.version = version
-    this.averageTime = average
+    this.fileExtention = fileExtention
+    this.averageSize = average
   }
 
   def Map serialise() {
     return [
-      id: "${this.packageId}-${this.version}-time",
+      id: "${this.packageId}-${this.version}-size:${this.fileExtention}",
       data: [
         'package-id': this.packageId,
+        'file-extension': this.fileExtention,
+        'average-size': this.averageSize,
         'ghc-version': this.version,
-        'average-time': this.averageTime,
       ]
     ]
   }
