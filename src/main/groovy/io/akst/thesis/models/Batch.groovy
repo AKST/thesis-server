@@ -15,7 +15,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.GeneratedValue
 
 @Entity
-@Table(name="batch")
+@Table(name="thesis.batch")
 @groovy.transform.TypeChecked
 class Batch implements Serializable {
   @Id @GeneratedValue @Column(name="id")

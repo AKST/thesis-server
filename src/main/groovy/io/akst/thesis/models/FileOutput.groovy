@@ -24,7 +24,7 @@ import io.akst.thesis.models.util.Semver
 
 
 @Entity
-@Table(name="file_output")
+@Table(name="thesis.file_output")
 @groovy.transform.TypeChecked
 class FileOutput implements Serializable {
   @Id @GeneratedValue @Column(name="id", unique = true)
@@ -43,7 +43,7 @@ class FileOutput implements Serializable {
   def BigDecimal fileSize
 
   @Column(name="activity_timestamp")
-  def Timestamp last_modified
+  def Timestamp activity_timestamp
 
   @ManyToOne(fetch=FetchType.LAZY, optional=true)
   @JoinColumn(name="result", referencedColumnName="id", insertable=false, updatable=false)

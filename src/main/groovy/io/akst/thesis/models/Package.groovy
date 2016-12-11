@@ -20,7 +20,7 @@ import io.akst.thesis.models.util.Semver
 
 
 @Entity
-@Table(name="package")
+@Table(name="thesis.package")
 @NamedQueries([
   @NamedQuery(name="Package.findAll", query = "SELECT p FROM Package p"),
   @NamedQuery(name="Package.find", query = "SELECT p FROM Package p WHERE p.id = :id"),
@@ -48,7 +48,7 @@ class Package implements Serializable {
   def Semver max_ghc_compat
 
   @Column(name="activity_timestamp")
-  def Timestamp last_modified
+  def Timestamp activity_timestamp
 
   @OneToMany(fetch=FetchType.LAZY)
   @JoinColumn(name="package", referencedColumnName="id", insertable=false, updatable=false)
@@ -57,7 +57,7 @@ class Package implements Serializable {
   def serialise() {
     return [
       id: this.id,
-      meta: [last_modified: this.last_modified],
+      meta: [last_modified: this.activity_timestamp],
       data: [
         name: this.name,
         'source-control': [

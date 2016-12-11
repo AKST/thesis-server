@@ -21,7 +21,7 @@ import io.akst.thesis.models.util.Semver
 
 
 @Entity
-@Table(name="result")
+@Table(name="thesis.result")
 @groovy.transform.TypeChecked
 class Result implements Serializable {
   @Id @GeneratedValue @Column(name="id")
@@ -38,7 +38,7 @@ class Result implements Serializable {
   def BigDecimal seconds
 
   @Column(name="activity_timestamp")
-  def Timestamp last_modified
+  def Timestamp activity_timestamp
 
   @ManyToOne(fetch=FetchType.LAZY, optional=true)
   //@JoinColumn(name="batch", referencedColumnName="id", insertable=false, updatable=false)

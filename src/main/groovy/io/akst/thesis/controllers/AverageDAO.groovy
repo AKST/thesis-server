@@ -26,6 +26,12 @@ import io.akst.thesis.models.util.Semver
 class AverageDAO {
   private def EntityManagerFactory factory
 
+  /**
+   * Generates the average sizes grouped on
+   *  - file-extension
+   *  - package-id
+   *  - ghc-version
+   */
   def Collection<AverageSize> findAllSizes(AverageSizeQuery query) {
     return this.withSession({ EntityManager session ->
       def builder = session.getCriteriaBuilder()
@@ -55,6 +61,12 @@ class AverageDAO {
     })
   }
 
+  /**
+   * Generates the average compiliation times grouped on
+   *  - file-extension
+   *  - package-id
+   *  - ghc-version
+   */
   def Collection<AverageTime> findAllTimes(AverageTimeQuery query) {
     return this.withSession({ EntityManager session ->
       def builder = session.getCriteriaBuilder()

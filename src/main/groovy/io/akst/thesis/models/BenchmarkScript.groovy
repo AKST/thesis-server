@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn
 import javax.persistence.GeneratedValue
 
 @Entity
-@Table(name="benchmark_script")
+@Table(name="thesis.benchmark_script")
 @groovy.transform.TypeChecked
 class BenchmarkScript implements Serializable {
   @Id @GeneratedValue @Column(name="id")
@@ -22,8 +22,11 @@ class BenchmarkScript implements Serializable {
   @Column(name="repr")
   String repr
 
-  @Column(name="activity_timestamp")
+  @Column(name="last_modified")
   def Timestamp last_modified
+
+  @Column(name="activity_timestamp")
+  def Timestamp activity_timestamp
 
   @OneToMany()
   @JoinColumn(name="checksum", referencedColumnName="id", insertable=false, updatable=false)
