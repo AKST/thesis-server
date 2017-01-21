@@ -57,7 +57,7 @@ class AverageSizeQuery extends AverageQuery {
         this.fileExtensions = values
         break
       default:
-        throw new UnknownParam(k, 'size')
+        throw new UnknownParam(key, 'size')
     }
   }
 
@@ -97,6 +97,6 @@ class AverageTimeQuery extends AverageQuery {
 
 class UnknownParam extends AppException {
   UnknownParam(String param, String type) {
-    super(401, "unknown param '$param' for type '$type'")
+    super(400, "unknown param '$param' for type '$type'")
   }
 }
