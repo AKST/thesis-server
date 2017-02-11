@@ -14,3 +14,14 @@ gradle run \
        -Dserver.root="the root path of this server, it defaults to '/'" \
        -Dserver.port="the port that this server will run on, defaults to 80"
 ```
+
+## Installation
+
+First make a file of environment variables the script in `scripts/start.sh`,
+then download from dockerhub run like so (add additional flags if necessary).
+
+```
+vim my-environment-variables.list
+docker pull akst/thesis-api:0.1
+docker run --env-file my-environment-variables.list akst/thesis-api:0.1
+```

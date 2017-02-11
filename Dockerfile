@@ -26,16 +26,17 @@ RUN rm -rf /var/cache/oracle-jdk8-installer
 
 # Define commonly used JAVA_HOME variable
 ENV JAVA_HOME /usr/lib/jvm/java-8-oracle
+EXPOSE 80
 
 # Define working directory.
 RUN mkdir -p /root/app
-WORKDIR /root
+WORKDIR /root/app
 
 # Install source
-RUN git clone https://github.com/AKST/thesis-server.git /root/app
+RUN git clone --branch 0.1 https://github.com/AKST/thesis-server.git .
 
 # Build source
 RUN gradle build
 
 # starts script in
-CMD ["bash"]
+CMD ["./scripts/start.sh"]

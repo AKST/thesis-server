@@ -1,6 +1,6 @@
 #!/bin/sh
 gradle run \
-  -Dserver.port=$APP_PORT \
+  -Dserver.port=80 \
   -Dserver.root=$APP_ROOT \
   -Ddb.username=$APP_DB_USERNAME \
   -Ddb.password=$APP_DB_PASSWORD \
